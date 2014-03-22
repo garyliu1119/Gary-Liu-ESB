@@ -1,6 +1,10 @@
 package com.ggl.esb.osgi.rs;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.DELETE;
@@ -27,16 +31,30 @@ public class CustomerService {
         init();
     }
 
-    @GET
-    @Path("/customers/{id}/")
-    @Produces("application/xml")
-    public Customer getCustomer(@PathParam("id") String id) {
-        logger.info("----invoking getCustomer, Customer id is: " + id);
-        long idNumber = Long.parseLong(id);
-        Customer c = customers.get(idNumber);
-        return c;
-    }
+//    @GET
+//    @Path("/customers/{id}/")
+//    @Produces("application/xml")
+//    public Customer getCustomer(@PathParam("id") String id) {
+//    	
+//        logger.info("----invoking getCustomer, Customer id is: " + id + "----");
+//        long idNumber = Long.parseLong(id);
+//        Customer c = customers.get(idNumber);
+//        return c;
+//    }
 
+    @GET
+    @Path("/customers/")
+    @Produces("application/xml")
+    public List<Customer> getCustomers() {
+        logger.info("----Retrieve All Customers----");
+        Collection<Customer> cc = customers.values();
+        List<Customer> customerList = new ArrayList<Customer>();
+        for(Iterator<Customer> iter=cc.iterator(); iter.hasNext();){
+        	customerList.add(iter.next());
+        }
+        return customerList;
+    }
+    
     @PUT
     @Path("/customers/")
     public Response updateCustomer(Customer customer) {
