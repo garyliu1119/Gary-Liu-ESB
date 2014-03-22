@@ -18,7 +18,8 @@ Camel Router Project for Blueprint (OSGi)
   		curl http://localhost:19191/customerservice/customers/123
  
 	3.3 PUT
-  		curl -X PUT -T src/main/resources/org/apache/servicemix/examples/cxf/jaxrs/client/update_customer.xml -H "Content-Type: text/xml" http://localhost:19191/customerservice/customers
+  		 curl -X PUT -T src/main/resources/client/update_customer.xml -H "Content-Type: text/xml" http://localhost:19191/customerservice/customers
+
 	
 	3.4 DELETE   
 		curl -X DELETE http://localhost:19191/customerservice/customers/123
